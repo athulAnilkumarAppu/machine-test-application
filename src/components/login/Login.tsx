@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "./Login.scss";
 import { FaGoogle, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import illustration from "./assets/login-illustration.svg"; // replace with your illustration
+// import illustration from "./assets/login-illustration.svg";
+import type { IconType } from "react-icons";
 
 const Login = () => {
+  const IconWrapper: React.FC<{ Icon: IconType }> = ({ Icon }) => {
+    return <>{React.createElement(Icon)}</>;
+  };
   return (
     <div className="login-page">
       <Container fluid className="login-container">
@@ -55,19 +58,18 @@ const Login = () => {
                 <div className="divider">
                   <span>Or Sign In With</span>
                 </div>
-
                 <div className="social-icons">
                   <a href="#" className="social-icon">
-                    <FaGoogle />
+                    <IconWrapper Icon={FaGoogle} />
                   </a>
                   <a href="#" className="social-icon">
-                    <FaFacebookF />
+                    <IconWrapper Icon={FaFacebookF} />
                   </a>
                   <a href="#" className="social-icon">
-                    <FaLinkedinIn />
+                    <IconWrapper Icon={FaLinkedinIn} />
                   </a>
                   <a href="#" className="social-icon">
-                    <FaTwitter />
+                    <IconWrapper Icon={FaTwitter} />
                   </a>
                 </div>
               </Form>
@@ -76,7 +78,7 @@ const Login = () => {
 
           {/* Right side - Illustration */}
           <Col md={6} className="login-illustration-section d-none d-md-flex">
-            <img src={illustration} alt="Login Illustration" />
+            {/* <img src={illustration} alt="Login Illustration" /> */}
           </Col>
         </Row>
       </Container>
