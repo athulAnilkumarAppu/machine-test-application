@@ -15,7 +15,6 @@ const Login = () => {
     <div className="login-page">
       <Container fluid className="login-container">
         <Row className="align-items-center">
-          {/* LEFT SIDE - FORM */}
           <Col md={6} className="login-form-section">
             <div className="login-form-box">
               <h2 className="login-title">Sign In</h2>
@@ -80,7 +79,6 @@ const Login = () => {
             </div>
           </Col>
 
-          {/* RIGHT SIDE - IMAGE SECTION */}
           <Col md={6} className="login-illustration-section">
             <div className="illustration-wrapper">
               <img src={keyImage} alt="key" className="key-image" />
