@@ -7,14 +7,15 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import illustration from "./assets/login-illustration.svg";
+import illustration from "../../assets/images/illustration.png";
+import keyImage from "../../assets/images/key.png";
 
 const Login = () => {
   return (
     <div className="login-page">
       <Container fluid className="login-container">
         <Row className="align-items-center">
-          {/* Left side - form */}
+          {/* LEFT SIDE - FORM */}
           <Col md={6} className="login-form-section">
             <div className="login-form-box">
               <h2 className="login-title">Sign In</h2>
@@ -79,10 +80,16 @@ const Login = () => {
             </div>
           </Col>
 
-          {/* Right side - illustration */}
-          <Col md={6} className="login-illustration-section d-none d-md-flex">
-            {/* Replace this with your actual image */}
-            <img src="your-image-path.svg" alt="Login Illustration" />
+          {/* RIGHT SIDE - IMAGE SECTION */}
+          <Col md={6} className="login-illustration-section">
+            <div className="illustration-wrapper">
+              <img src={keyImage} alt="key" className="key-image" />
+              <img
+                src={illustration}
+                alt="Login Illustration"
+                className="illustration-image"
+              />
+            </div>
           </Col>
         </Row>
       </Container>
