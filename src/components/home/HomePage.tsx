@@ -12,6 +12,7 @@ import {
   getContinentList,
   getVisibleCount,
   setContinentList,
+  setCurrentIndex,
   setVisibleCount,
 } from "../../slices/home-page-slice";
 import { getContinentData } from "../../libs/services/homePageServices";
@@ -24,6 +25,11 @@ const HomePage = () => {
 
   useEffect(() => {
     getContinentDataCall();
+
+    return () => {
+      dispatch(setVisibleCount(10));
+      dispatch(setCurrentIndex(0));
+    };
   }, []);
 
   const getContinentDataCall = async () => {
@@ -41,7 +47,7 @@ const HomePage = () => {
   const visibleCountries = countries.slice(0, visibleCount);
 
   const handleLoadMore = () => {
-    dispatch(setVisibleCount((prev: any) => prev + 10));
+    dispatch(setVisibleCount(visibleCount + 10));
   };
 
   return (

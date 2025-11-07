@@ -6,7 +6,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: any = {
   continentList: [],
   currentIndex: 0,
-  visibleCount: 0,
+  visibleCount: 10,
 };
 
 export const homePageSlice = createSlice({

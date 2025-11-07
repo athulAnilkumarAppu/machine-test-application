@@ -17,22 +17,18 @@ const ImageSlider = () => {
 
   const handlePrev = () => {
     dispatch(
-      setCurrentIndex((currentIndex: any) =>
-        currentIndex === 0 ? images.length - 1 : currentIndex - 1
-      )
+      setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1)
     );
   };
 
   const handleNext = () => {
     dispatch(
-      setCurrentIndex((currentIndex: any) =>
-        currentIndex === images.length - 1 ? 0 : currentIndex + 1
-      )
+      setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1)
     );
   };
 
   const handleDotClick = (index: number) => {
-    setCurrentIndex(index);
+    dispatch(setCurrentIndex(index));
   };
 
   const getVisibleDots = () => {
