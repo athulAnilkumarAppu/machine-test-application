@@ -7,7 +7,6 @@ html {
   width: 100vw;
 }
 
-/* Login Page Styles */
 .login-page {
   height: 100vh;
   width: 100vw;
@@ -37,7 +36,6 @@ html {
   overflow: hidden;
 }
 
-/* LEFT SIDE - FORM SECTION */
 .login-form-section {
   padding: 0 100px;
   display: flex;
@@ -83,7 +81,6 @@ html {
   text-decoration: underline;
 }
 
-/* FORM INPUTS */
 .login-input {
   height: 56px;
   border: 2px solid #2c2c2c;
@@ -110,7 +107,6 @@ html {
   opacity: 1;
 }
 
-/* CHECKBOX */
 .d-flex.align-items-center.mb-3 {
   margin-bottom: 24px !important;
   margin-top: 8px;
@@ -148,7 +144,6 @@ html {
   color: red;
 }
 
-/* SIGN IN BUTTON */
 .login-btn {
   width: 100%;
   height: 56px;
@@ -180,7 +175,6 @@ html {
   border: none !important;
 }
 
-/* DIVIDER */
 .divider {
   text-align: center;
   margin: 40px 0 35px 0;
@@ -215,7 +209,6 @@ html {
   font-weight: 400;
 }
 
-/* SOCIAL ICONS */
 .social-icons {
   display: flex;
   justify-content: flex-start;
@@ -243,7 +236,6 @@ html {
   color: #ffffff;
 }
 
-/* RIGHT SIDE - ILLUSTRATION SECTION */
 .login-illustration-section {
   background-color: #ffffff;
   padding: 0;
@@ -265,7 +257,6 @@ html {
   justify-content: center;
 }
 
-/* KEY IMAGE - TOP RIGHT */
 .key-image {
   position: absolute;
   top: 100px;
@@ -276,7 +267,6 @@ html {
   object-fit: contain;
 }
 
-/* WALKING FIGURE IMAGE - CENTER */
 .illustration-image {
   position: relative;
   width: auto;
@@ -286,17 +276,14 @@ html {
   margin-top: 0;
 }
 
-/* Remove the dimension label */
 .illustration-wrapper::after {
   display: none;
 }
 
-/* Form spacing adjustments */
 .mb-3 {
   margin-bottom: 20px !important;
 }
 
-/* RESPONSIVE STYLES */
 @media (max-width: 1200px) {
   .login-form-section {
     padding: 0 80px;
@@ -409,19 +396,16 @@ html {
   }
 }
 
-// Home Page Styles
-// Countries Welcome Page Styles - Scoped to avoid conflicts
 .countries-welcome-page {
   background: #fff;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   color: #2c2c2c;
 
-  /* 👇 Add these lines */
   min-height: 100vh;
   height: auto;
-  overflow-y: auto; // Enables vertical scroll
-  overflow-x: hidden; // Prevents sideways scroll
-  scroll-behavior: smooth; // Optional smooth scrolling
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 
   .countries-container {
     max-width: 1200px;
@@ -433,7 +417,6 @@ html {
     }
   }
 
-  /* HEADER */
   .header-section {
     display: flex;
     justify-content: space-between;
@@ -479,7 +462,6 @@ html {
     }
   }
 
-  /* WELCOME TITLE */
   .welcome-title {
     display: flex;
     align-items: center;
@@ -501,7 +483,6 @@ html {
     }
   }
 
-  /* HERO SECTION */
   .hero-section {
     margin-bottom: 40px;
 
@@ -521,7 +502,10 @@ html {
       &.small {
         height: 280px;
       }
-
+      img {
+        width: 120px;
+        height: 120px;
+      }
       .placeholder {
         display: flex;
         flex-direction: column;

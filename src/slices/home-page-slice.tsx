@@ -5,6 +5,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {
   continentList: [],
+  currentIndex: 0,
+  visibleCount: 0,
 };
 
 export const homePageSlice = createSlice({
@@ -14,12 +16,24 @@ export const homePageSlice = createSlice({
     setContinentList: (state, action: PayloadAction<any>) => {
       state.continentList = action.payload;
     },
+    setCurrentIndex: (state, action: PayloadAction<any>) => {
+      state.currentIndex = action.payload;
+    },
+
+    setVisibleCount: (state, action: PayloadAction<any>) => {
+      state.visibleCount = action.payload;
+    },
   },
 });
 
-export const { setContinentList } = homePageSlice.actions;
+export const { setContinentList, setCurrentIndex, setVisibleCount } =
+  homePageSlice.actions;
 
 export const getContinentList = (state: RootState) =>
   state.homePageSlice.continentList;
+export const getCurrentIndex = (state: RootState) =>
+  state.homePageSlice.currentIndex;
+export const getVisibleCount = (state: RootState) =>
+  state.homePageSlice.visibleCount;
 
 export default homePageSlice.reducer;

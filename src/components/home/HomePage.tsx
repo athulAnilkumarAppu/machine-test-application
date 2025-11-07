@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,15 +10,17 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   getContinentList,
+  getVisibleCount,
   setContinentList,
+  setVisibleCount,
 } from "../../slices/home-page-slice";
 import { getContinentData } from "../../libs/services/homePageServices";
+import ImageSlider from "./ImageSlider";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const countries = useAppSelector(getContinentList);
-
-  const [visibleCount, setVisibleCount] = useState<number>(10);
+  const visibleCount = useAppSelector(getVisibleCount);
 
   useEffect(() => {
     getContinentDataCall();
@@ -39,7 +41,7 @@ const HomePage = () => {
   const visibleCountries = countries.slice(0, visibleCount);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 10);
+    dispatch(setVisibleCount((prev: any) => prev + 10));
   };
 
   return (
@@ -62,20 +64,7 @@ const HomePage = () => {
 
         <Row className="hero-section gx-4">
           <Col lg={8} md={12}>
-            <div className="hero-card large">
-              <div className="placeholder">
-                <div className="icon-triangle"></div>
-                <div className="icon-circles">
-                  <div className="circle"></div>
-                  <div className="circle"></div>
-                </div>
-              </div>
-              <div className="card-controls">
-                <button>◀</button>
-                <button>●</button>
-                <button>▶</button>
-              </div>
-            </div>
+            <ImageSlider />
           </Col>
           <Col lg={4} md={12}>
             <div className="hero-card small">
