@@ -8,7 +8,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/login");
+    navigate("/home");
   }, []);
 
   return <RouterPage />;
