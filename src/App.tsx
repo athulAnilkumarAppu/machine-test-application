@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import RouterPage from "./router/Router";
 
@@ -8,7 +7,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/home");
+    navigate("/login");
   }, []);
 
   return <RouterPage />;
