@@ -10,11 +10,15 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   getContinentList,
+  getFilteredContinents,
   getIsMenuOpen,
+  getSelectedFilterMenu,
   getVisibleCount,
   setContinentList,
   setCurrentIndex,
+  setFilteredContinents,
   setIsMenuOpen,
+  setSelectedFilterMenu,
   setVisibleCount,
 } from "../../slices/home-page-slice";
 import { getContinentData } from "../../libs/services/homePageServices";
@@ -23,9 +27,11 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const countries = useAppSelector(getContinentList);
+  const continents = useAppSelector(getContinentList);
   const visibleCount = useAppSelector(getVisibleCount);
   const menuOpen = useAppSelector(getIsMenuOpen);
+  const filteredContinents = useAppSelector(getFilteredContinents);
+  const selectedFilterMenu = useAppSelector(getSelectedFilterMenu);
 
   useEffect(() => {
     getContinentDataCall();
@@ -41,6 +47,7 @@ const HomePage = () => {
       .then((res: any) => {
         if (res) {
           dispatch(setContinentList(res));
+          dispatch(setFilteredContinents(res));
         }
       })
       .catch(() => {
@@ -48,7 +55,7 @@ const HomePage = () => {
       });
   };
 
-  const visibleCountries = countries.slice(0, visibleCount);
+  const visibleCountries = filteredContinents.slice(0, visibleCount);
 
   const handleLoadMore = () => {
     dispatch(setVisibleCount(visibleCount + 10));
@@ -58,6 +65,19 @@ const HomePage = () => {
     dispatch(setIsMenuOpen(!menuOpen));
   };
 
+  const onFilterClick = (region: string) => {
+    dispatch(setSelectedFilterMenu(region));
+    const filteredData = continents?.filter(
+      (continent: any) => continent?.region === region
+    );
+
+    if (region === "All") {
+      dispatch(setFilteredContinents(continents));
+    } else {
+      dispatch(setFilteredContinents(filteredData));
+    }
+  };
+
   return (
     <div className="countries-welcome-page">
       <Container fluid className="countries-container">
@@ -65,9 +85,30 @@ const HomePage = () => {
           <div className="countries-label">Countries</div>
 
           <div className="header-tabs">
-            <span className="tab-item active">All</span>
-            <span className="tab-item">Asia</span>
-            <span className="tab-item">Europe</span>
+            <span
+              className={`tab-item ${
+                selectedFilterMenu === "All" ? "active" : ""
+              }`}
+              onClick={() => onFilterClick("All")}
+            >
+              All
+            </span>
+            <span
+              className={`tab-item ${
+                selectedFilterMenu === "Asia" ? "active" : ""
+              }`}
+              onClick={() => onFilterClick("Asia")}
+            >
+              Asia
+            </span>
+            <span
+              className={`tab-item ${
+                selectedFilterMenu === "Europe" ? "active" : ""
+              }`}
+              onClick={() => onFilterClick("Europe")}
+            >
+              Europe
+            </span>
           </div>
 
           <div className="hamburger" onClick={() => onHamburgerClick()}>
@@ -122,7 +163,7 @@ const HomePage = () => {
           ))}
         </Row>
 
-        {visibleCount < countries.length && (
+        {visibleCount < filteredContinents.length && (
           <div className="load-more">
             <Button onClick={handleLoadMore}>Load more</Button>
           </div>

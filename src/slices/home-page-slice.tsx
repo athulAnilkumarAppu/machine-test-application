@@ -8,6 +8,8 @@ const initialState: any = {
   currentIndex: 0,
   visibleCount: 10,
   menuOpen: false,
+  filteredContinents: [],
+  selectedFilterMenu: "All",
 };
 
 export const homePageSlice = createSlice({
@@ -28,6 +30,14 @@ export const homePageSlice = createSlice({
     setIsMenuOpen: (state, action: PayloadAction<any>) => {
       state.menuOpen = action.payload;
     },
+
+    setFilteredContinents: (state, action: PayloadAction<any>) => {
+      state.filteredContinents = action.payload;
+    },
+
+    setSelectedFilterMenu: (state, action: PayloadAction<any>) => {
+      state.selectedFilterMenu = action.payload;
+    },
   },
 });
 
@@ -36,6 +46,8 @@ export const {
   setCurrentIndex,
   setVisibleCount,
   setIsMenuOpen,
+  setFilteredContinents,
+  setSelectedFilterMenu,
 } = homePageSlice.actions;
 
 export const getContinentList = (state: RootState) =>
@@ -45,5 +57,10 @@ export const getCurrentIndex = (state: RootState) =>
 export const getVisibleCount = (state: RootState) =>
   state.homePageSlice.visibleCount;
 export const getIsMenuOpen = (state: RootState) => state.homePageSlice.menuOpen;
+
+export const getFilteredContinents = (state: RootState) =>
+  state.homePageSlice.filteredContinents;
+export const getSelectedFilterMenu = (state: RootState) =>
+  state.homePageSlice.selectedFilterMenu;
 
 export default homePageSlice.reducer;
