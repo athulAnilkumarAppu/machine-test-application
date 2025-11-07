@@ -1,18 +1,20 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { FaGoogle, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import {
+  faGoogle,
+  faFacebookF,
+  faLinkedinIn,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import illustration from "./assets/login-illustration.svg";
-import type { IconType } from "react-icons";
 
 const Login = () => {
-  const IconWrapper: React.FC<{ Icon: IconType }> = ({ Icon }) => {
-    return <>{React.createElement(Icon)}</>;
-  };
   return (
     <div className="login-page">
       <Container fluid className="login-container">
         <Row className="align-items-center">
-          {/* Left side - Form */}
+          {/* Left side - form */}
           <Col md={6} className="login-form-section">
             <div className="login-form-box">
               <h2 className="login-title">Sign In</h2>
@@ -21,7 +23,7 @@ const Login = () => {
               </p>
 
               <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3">
                   <Form.Control
                     type="text"
                     placeholder="Username or email"
@@ -29,7 +31,7 @@ const Login = () => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                   <Form.Control
                     type="password"
                     placeholder="Password"
@@ -58,27 +60,29 @@ const Login = () => {
                 <div className="divider">
                   <span>Or Sign In With</span>
                 </div>
+
                 <div className="social-icons">
                   <a href="#" className="social-icon">
-                    <IconWrapper Icon={FaGoogle} />
+                    <FontAwesomeIcon icon={faGoogle} />
                   </a>
                   <a href="#" className="social-icon">
-                    <IconWrapper Icon={FaFacebookF} />
+                    <FontAwesomeIcon icon={faFacebookF} />
                   </a>
                   <a href="#" className="social-icon">
-                    <IconWrapper Icon={FaLinkedinIn} />
+                    <FontAwesomeIcon icon={faLinkedinIn} />
                   </a>
                   <a href="#" className="social-icon">
-                    <IconWrapper Icon={FaTwitter} />
+                    <FontAwesomeIcon icon={faTwitter} />
                   </a>
                 </div>
               </Form>
             </div>
           </Col>
 
-          {/* Right side - Illustration */}
+          {/* Right side - illustration */}
           <Col md={6} className="login-illustration-section d-none d-md-flex">
-            {/* <img src={illustration} alt="Login Illustration" /> */}
+            {/* Replace this with your actual image */}
+            <img src="your-image-path.svg" alt="Login Illustration" />
           </Col>
         </Row>
       </Container>
