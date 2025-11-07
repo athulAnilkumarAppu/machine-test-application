@@ -2,7 +2,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100vh;
   width: 100vw;
 }
@@ -411,6 +411,13 @@ html {
   background: #fff;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   color: #2c2c2c;
+
+  /* 👇 Add these lines */
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto; // Enables vertical scroll
+  overflow-x: hidden; // Prevents sideways scroll
+  scroll-behavior: smooth; // Optional smooth scrolling
 
   .countries-container {
     max-width: 1200px;
