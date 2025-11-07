@@ -10,18 +10,22 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   getContinentList,
+  getIsMenuOpen,
   getVisibleCount,
   setContinentList,
   setCurrentIndex,
+  setIsMenuOpen,
   setVisibleCount,
 } from "../../slices/home-page-slice";
 import { getContinentData } from "../../libs/services/homePageServices";
 import ImageSlider from "./ImageSlider";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const countries = useAppSelector(getContinentList);
   const visibleCount = useAppSelector(getVisibleCount);
+  const menuOpen = useAppSelector(getIsMenuOpen);
 
   useEffect(() => {
     getContinentDataCall();
@@ -50,16 +54,33 @@ const HomePage = () => {
     dispatch(setVisibleCount(visibleCount + 10));
   };
 
+  const onHamburgerClick = () => {
+    dispatch(setIsMenuOpen(!menuOpen));
+  };
+
   return (
     <div className="countries-welcome-page">
       <Container fluid className="countries-container">
         <div className="header-section">
           <div className="countries-label">Countries</div>
+
           <div className="header-tabs">
             <span className="tab-item active">All</span>
             <span className="tab-item">Asia</span>
             <span className="tab-item">Europe</span>
           </div>
+
+          <div className="hamburger" onClick={() => onHamburgerClick()}>
+            <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+          </div>
+
+          {menuOpen && (
+            <div className="mobile-menu">
+              <span className="tab-item active">All</span>
+              <span className="tab-item">Asia</span>
+              <span className="tab-item">Europe</span>
+            </div>
+          )}
         </div>
 
         <div className="welcome-title">

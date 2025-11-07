@@ -7,6 +7,7 @@ const initialState: any = {
   continentList: [],
   currentIndex: 0,
   visibleCount: 10,
+  menuOpen: false,
 };
 
 export const homePageSlice = createSlice({
@@ -23,11 +24,19 @@ export const homePageSlice = createSlice({
     setVisibleCount: (state, action: PayloadAction<any>) => {
       state.visibleCount = action.payload;
     },
+
+    setIsMenuOpen: (state, action: PayloadAction<any>) => {
+      state.menuOpen = action.payload;
+    },
   },
 });
 
-export const { setContinentList, setCurrentIndex, setVisibleCount } =
-  homePageSlice.actions;
+export const {
+  setContinentList,
+  setCurrentIndex,
+  setVisibleCount,
+  setIsMenuOpen,
+} = homePageSlice.actions;
 
 export const getContinentList = (state: RootState) =>
   state.homePageSlice.continentList;
@@ -35,5 +44,6 @@ export const getCurrentIndex = (state: RootState) =>
   state.homePageSlice.currentIndex;
 export const getVisibleCount = (state: RootState) =>
   state.homePageSlice.visibleCount;
+export const getIsMenuOpen = (state: RootState) => state.homePageSlice.menuOpen;
 
 export default homePageSlice.reducer;
