@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,25 +7,44 @@ import {
   faLinkedinIn,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
+import {
+  getContinentList,
+  setContinentList,
+} from "../../slices/home-page-slice";
+import { getContinentData } from "../../libs/services/homePageServices";
 
 const HomePage = () => {
-  const countries = [
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Albania", region: "Europe" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-    { name: "Afghanistan", region: "Asia" },
-  ];
+  const dispatch = useAppDispatch();
+  const countries = useAppSelector(getContinentList);
+
+  const [visibleCount, setVisibleCount] = useState<number>(10);
+
+  useEffect(() => {
+    getContinentDataCall();
+  }, []);
+
+  const getContinentDataCall = async () => {
+    await getContinentData()
+      .then((res: any) => {
+        if (res) {
+          dispatch(setContinentList(res));
+        }
+      })
+      .catch(() => {
+        alert("Something went wrong");
+      });
+  };
+
+  const visibleCountries = countries.slice(0, visibleCount);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 10);
+  };
 
   return (
     <div className="countries-welcome-page">
       <Container fluid className="countries-container">
-        {/* Header */}
         <div className="header-section">
           <div className="countries-label">Countries</div>
           <div className="header-tabs">
@@ -35,14 +54,12 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Welcome */}
         <div className="welcome-title">
           <span className="line"></span>
           <span className="title-text">WELCOME</span>
           <span className="line"></span>
         </div>
 
-        {/* Hero Section */}
         <Row className="hero-section gx-4">
           <Col lg={8} md={12}>
             <div className="hero-card large">
@@ -73,12 +90,13 @@ const HomePage = () => {
           </Col>
         </Row>
 
-        {/* Country Grid */}
         <Row className="countries-grid">
-          {countries.map((country, i) => (
+          {visibleCountries.map((country: any, i: number) => (
             <Col lg={6} md={6} sm={12} key={i}>
               <div className="country-card">
-                <div className="flag-placeholder"></div>
+                <div className="flag-placeholder">
+                  <img src={country.flag} alt="flag" />
+                </div>
                 <div className="country-info">
                   <h3>{country.name}</h3>
                   <p>{country.region}</p>
@@ -88,12 +106,12 @@ const HomePage = () => {
           ))}
         </Row>
 
-        {/* Load more */}
-        <div className="load-more">
-          <Button>Load more</Button>
-        </div>
+        {visibleCount < countries.length && (
+          <div className="load-more">
+            <Button onClick={handleLoadMore}>Load more</Button>
+          </div>
+        )}
 
-        {/* Footer */}
         <footer className="footer">
           <div className="social">
             <a href="#">
